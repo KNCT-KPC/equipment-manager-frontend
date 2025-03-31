@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "prepare": "husky install",
     "format": "prettier --write src/**/*.{ts,tsx,js,jsx,cjs,mjs,json,lintstagedrc}"
   },
@@ -31,14 +31,5 @@
     "prettier": "^3.5.3",
     "tailwindcss": "^4",
     "typescript": "^5"
-  },
-  "lint-staged": {
-    "*.{ts,tsx, js, jsx}": [
-      "npm run format",
-      "npm run lint"
-    ],
-    "*.{cjs, mjs, md, json}": [
-      "npm run format"
-    ]
   }
 }
