@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --fix",
+    "prepare": "husky install",
+    "format": "prettier --write src/**/*.{ts,tsx,js,jsx,cjs,mjs,json,lintstagedrc}"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -24,6 +26,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.5.0",
+    "prettier": "^3.5.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
