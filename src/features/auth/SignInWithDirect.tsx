@@ -5,6 +5,7 @@ import { signIn as signInByNextAuth } from 'next-auth/react';
 import { auth } from '@/lib/firebase/client';
 import { TextField, Button } from '@mui/material';
 import { useSnackbar } from 'notistack';
+import { AuthErrorHandle } from './AuthErrorHandle';
 
 export default function SignInWithDirect() {
   const { enqueueSnackbar } = useSnackbar();
@@ -51,21 +52,7 @@ export default function SignInWithDirect() {
       });
     } catch (e) {
       setIsLoading(false);
-      console.error(e);
-      let errorMessage = 'ログインに失敗しました';
-      if (e instanceof Error) {
-        if (e.message.includes('user-not-found')) {
-          errorMessage = 'ユーザーが見つかりません';
-        } else if (e.message.includes('too-many-requests')) {
-          errorMessage =
-            '試行回数が多すぎます。しばらく時間をおいて再度お試しください';
-        } else if (e.message.includes('invalid-credential')) {
-          errorMessage = '認証情報が正しくありません';
-        } else if (e.message.includes('invalid-email')) {
-          errorMessage = 'メールアドレスのフォーマットが正しくありません';
-        }
-      }
-      enqueueSnackbar(errorMessage, { variant: 'error' });
+      AuthErrorHandle(e as Error, enqueueSnackbar);
     }
   };
 
