@@ -49,7 +49,7 @@ export default function SignInWithMicrosoft() {
         />
       }
     >
-      Microsoftアカウントでログイン
+      Microsoftアカウントでサインイン
     </Button>
   );
 }
