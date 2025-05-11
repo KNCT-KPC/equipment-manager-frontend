@@ -62,6 +62,7 @@ export default function SignInWithDirect() {
         id="outlined-basic"
         label="メールアドレス"
         variant="outlined"
+        type="email"
         value={email}
         onChange={(event) => setEmail(event.target.value)}
         error={!!emailError}
@@ -72,6 +73,7 @@ export default function SignInWithDirect() {
         id="outlined-basic"
         label="パスワード"
         variant="outlined"
+        type="password"
         value={password}
         onChange={(event) => setPassword(event.target.value)}
         error={!!passwordError}
