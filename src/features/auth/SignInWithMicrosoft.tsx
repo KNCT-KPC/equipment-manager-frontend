@@ -2,7 +2,7 @@
 
 import { OAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '@/lib/firebase/client';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 import Image from 'next/image';
 import { signIn as signInByNextAuth } from 'next-auth/react';
 import { useSnackbar } from 'notistack';
@@ -38,18 +38,21 @@ export default function SignInWithMicrosoft() {
       sx={{ height: '56px', width: '100%' }}
       variant="outlined"
       disabled={isLoading}
-      loading={isLoading}
       onClick={doSignIn}
       startIcon={
-        <Image
-          src="/logo/microsoft.png"
-          alt="Microsoft"
-          width={20}
-          height={20}
-        />
+        isLoading ? (
+          <CircularProgress size={20} />
+        ) : (
+          <Image
+            src="/logo/microsoft.png"
+            alt="Microsoft"
+            width={20}
+            height={20}
+          />
+        )
       }
     >
-      Microsoftアカウントでサインイン
+      {isLoading ? 'サインイン中...' : 'Microsoftアカウントでサインイン'}
     </Button>
   );
 }

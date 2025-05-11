@@ -2,13 +2,14 @@
 import { useState } from 'react';
 import { signOut as signOutByNextAuth } from 'next-auth/react';
 import { auth } from '@/lib/firebase/client';
-import { Button, Box, Typography } from '@mui/material';
+import { signOut as signOutByFirebase } from 'firebase/auth';
+import { Button, Box, Typography, CircularProgress } from '@mui/material';
 
 export default function SignInForm() {
   const [isLoading, setIsLoading] = useState(false);
   const signOut = async () => {
     setIsLoading(true);
-    await auth.signOut();
+    await signOutByFirebase(auth);
     await signOutByNextAuth({ callbackUrl: '/auth/signin', redirect: true });
   };
 
@@ -42,7 +43,8 @@ export default function SignInForm() {
         variant="contained"
         sx={{ height: '56px', width: '100%' }}
         onClick={() => signOut()}
-        loading={isLoading}
+        disabled={isLoading}
+        startIcon={isLoading && <CircularProgress size={24} color="inherit" />}
       >
         サインアウト
       </Button>

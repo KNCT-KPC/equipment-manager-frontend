@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
 import { signIn as signInByNextAuth } from 'next-auth/react';
 import { auth } from '@/lib/firebase/client';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, CircularProgress } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { AuthErrorHandle } from './AuthErrorHandle';
 
@@ -84,10 +84,10 @@ export default function SignInWithDirect() {
         variant="contained"
         onClick={signIn}
         disabled={isLoading}
-        loading={isLoading}
+        startIcon={isLoading && <CircularProgress size={20} />}
         sx={{ height: '56px', width: '100%' }}
       >
-        ログイン
+        {isLoading ? 'サインイン中...' : 'サインイン'}
       </Button>
     </>
   );
