@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import { Geist, Geist_Mono } from 'next/font/google';
+import SessionProvider from '../providers/SessionProvider';
+import NotistackProvider from '@/providers/Notistack';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,7 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <NotistackProvider>
+          <SessionProvider>{children}</SessionProvider>
+        </NotistackProvider>
       </body>
     </html>
   );
